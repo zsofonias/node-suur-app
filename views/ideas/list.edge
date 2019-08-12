@@ -1,0 +1,26 @@
+@layout('layouts.base')
+
+@section('content')
+    <h3>Idea List</h3><hr>
+    @if(ideas)
+        @each(idea in ideas)
+            <div class="card mb-2">
+                <div class="card-body">
+                <h4 class="card-title"> {{ idea.title }} </h4>
+                  <h6 class="card-subtitle mb-2 text-muted">Created at: {{ idea.date.toDateString() }}</h6>
+                <p class="card-text">{{ idea.description }}</p>
+                <a href="/ideas/edit/{{ idea._id }}" class="card-link btn btn-outline-info">Edit</a>
+                  <a href="/ideas/delete/{{ idea._id }}" class="card-link btn btn-outline-danger">Delete</a>
+                </div>
+            </div>
+        @endeach
+    @else
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-header">No Ideas Found</div>
+            <div class="card-body">
+              <h4 class="card-title">Dark card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+    @endif
+@endsection
