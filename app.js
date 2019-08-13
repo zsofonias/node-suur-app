@@ -11,6 +11,7 @@ const session = require('express-session');
 
 
 const idea_routes = require('./routes/idea_routes');
+const auth_routes = require('./routes/auth_routes');
 
 const app = express();
 
@@ -45,9 +46,14 @@ app.use((req, res, next) => {
 
 
 app.use('/ideas', idea_routes);
+app.use('/auth', auth_routes);
 
 app.get('/', (req, res) => {
     res.render('index');
+});
+
+app.use((req, res) => {
+    res.send('404, Page not Found');
 });
 
 
