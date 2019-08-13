@@ -75,4 +75,4 @@ module.exports = {
     getEditIdea: getEditIdea,
     update: update,
     remove: remove
-}
+};

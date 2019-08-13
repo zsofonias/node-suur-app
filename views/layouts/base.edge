@@ -22,23 +22,30 @@
                             <a class="nav-link" href="/ideas">Ideas</a>
                     </li>
                 </ul>
-            
-                <li class="navbar-nav ml-auto dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/ideas">My Ideas</a>
-                        <a class="dropdown-item" href="/ideas/create">Add Idea</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
+
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/register">Sign Up</a>
+                    </li>
+                    <li class="navbar-nav ml-auto dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/ideas">My Ideas</a>
+                            <a class="dropdown-item" href="/ideas/create">Add Idea</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>    
             </div>
         </div>
     </nav>
-    
-    
+ 
 
     <div class="container">
         @include('paritials._messages')
