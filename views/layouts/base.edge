@@ -37,13 +37,26 @@
             </div>
         </div>
     </nav>
+    
+    
 
     <div class="container">
+        @include('paritials._messages')
         @!section('content')
     </div>
     
     
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        {{--  auto close alert box after 3 seconds  --}}
+        $(document).ready(function() {
+            // show the alert
+            setTimeout(function() {
+                $(".alert").alert('close');
+            }, 3000);
+        });
+    </script>
 </body>
 </html>

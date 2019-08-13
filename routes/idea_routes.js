@@ -10,9 +10,11 @@ router.post('/', IdeasController.store);
 
 router.get('/create', IdeasController.create);
 
-router.get('/edit/:id', IdeasController.editIdea);
+router.get('/edit/:id', IdeasController.getEditIdea);
 
-router.get('/delete/:id', IdeasController.deleteIdea);
+router.put('/edit/:id', IdeasController.update);
+
+router.delete('/delete/:id', IdeasController.remove);
 
 
 

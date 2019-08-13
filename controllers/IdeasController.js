@@ -39,24 +39,31 @@ const store = (req, res, next) => {
         };
         Idea.create(newIdea, (err, idea) => {
             if(err) return console.log(err);
-            console.log(idea);
+            req.flash('success_msg', 'Your Idea has been created');
             res.redirect('/ideas');
         });      
     }   
 };
 
-const editIdea = (req, res, next) => {
+const getEditIdea = (req, res, next) => {
     Idea.findById(req.params.id, (err, idea) => {
         if (err) return console.log(err);
-        res.render('ideas.create', {
-            body: idea,
-        });
+        res.render('ideas.edit', {idea});
     });
 };
 
-const deleteIdea = (req, res, next) => {
-    Idea.findByIdAndDelete({_id : req.params.id}, (err, deleted) => {
+const update = (req, res, next) => {
+    Idea.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, idea) => {
+        if (err) console.log(err);
+        req.flash('success_msg', 'Your Idea has been updated');
+        res.redirect('/ideas');
+    })
+}
+
+const remove = (req, res, next) => {
+    Idea.findByIdAndDelete(req.params.id, (err, deleted) => {
         if (err) return console.log(err);
+        req.flash('success_msg', 'Your Idea has been removed');
         res.redirect('/ideas');
     });
 };
@@ -65,6 +72,7 @@ module.exports = {
     list: list,
     create: create,
     store: store,
-    editIdea: editIdea,
-    deleteIdea: deleteIdea
+    getEditIdea: getEditIdea,
+    update: update,
+    remove: remove
 }
