@@ -1,7 +1,7 @@
 @layout('layouts.base')
 
 @section('content')
-    <h3>Idea List</h3><hr>
+    <h3>Your Idea List</h3><hr>
     @if(ideas)
         @each(idea in ideas)
             <div class="card mb-2">
@@ -21,8 +21,8 @@
         <div class="card text-white bg-dark mb-3">
             <div class="card-header">No Ideas Found</div>
             <div class="card-body">
-              <h4 class="card-title">Dark card title</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="/ideas/create" class="btn btn-outline-warning btn-lg">Add an Idea</a>
+              
             </div>
         </div>
     @endif

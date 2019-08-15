@@ -5,6 +5,11 @@
   <div class="jumbotron text-center">
     <h1 class="display-3">{{ title }}</h1>
     <p class="lead">Save Your Thoughts and Ideas</p>
-    <a href="/ideas/create" class="btn btn-secondary btn-lg">Add Your Ideas</a>
+    @if(user)
+    <a href="/ideas/create" class="btn btn-secondary btn-lg">Add an Idea</a>
+    @else
+      <a href="/auth/login" class="btn btn-secondary btn-lg">Log in</a> -
+      <a href="/auth/register" class="btn btn-secondary btn-lg">Sign up</a>
+    @endif
   </div>
 @endsection

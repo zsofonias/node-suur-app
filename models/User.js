@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -20,5 +20,9 @@ const UserSchema = new Schema({
         default: Date.now()
     }
 });
+
+// UserSchema.statics.verifayPassword = async (userPassword) => {
+//     return await bcrypt.compare()
+// }
 
 module.exports = mongoose.model('User', UserSchema);

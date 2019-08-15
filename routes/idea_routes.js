@@ -1,20 +1,21 @@
 const express = require('express');
 
+const {isAuthenticated} = require('../middlewares/auth');
 const IdeasController = require('../controllers/IdeasController');
 
 const router = express.Router();
 
-router.get('/', IdeasController.list);
+router.get('/', isAuthenticated, IdeasController.list);
 
-router.post('/', IdeasController.store);
+router.post('/', isAuthenticated, IdeasController.store);
 
-router.get('/create', IdeasController.create);
+router.get('/create', isAuthenticated, IdeasController.create);
 
-router.get('/edit/:id', IdeasController.getEditIdea);
+router.get('/edit/:id', isAuthenticated, IdeasController.getEditIdea);
 
-router.put('/edit/:id', IdeasController.update);
+router.put('/edit/:id', isAuthenticated, IdeasController.update);
 
-router.delete('/delete/:id', IdeasController.remove);
+router.delete('/delete/:id', isAuthenticated, IdeasController.remove);
 
 
 

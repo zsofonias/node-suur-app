@@ -2,7 +2,8 @@
 const Idea = require('../models/Idea');
 
 const list = async (req, res, next) => {
-    const ideas = await Idea.find({});
+    let ideas = await Idea.find({author: req.user.id});
+    if (ideas.length < 1) ideas=null;
     res.render('ideas.list', {ideas});
 };
 
@@ -36,6 +37,7 @@ const store = (req, res, next) => {
         const newIdea = {
             title: req.body.title,
             description: req.body.description,
+            author: req.user.id
         };
         Idea.create(newIdea, (err, idea) => {
             if(err) return console.log(err);
@@ -45,10 +47,17 @@ const store = (req, res, next) => {
     }   
 };
 
+// gets the page to edit its respective idea
 const getEditIdea = (req, res, next) => {
     Idea.findById(req.params.id, (err, idea) => {
         if (err) return console.log(err);
-        res.render('ideas.edit', {idea});
+        if (idea.author != req.user.id){
+            req.flash('error_msg', 'Not Authorized');
+            res.redirect('/ideas');
+        } else {
+            res.render('ideas.edit', {idea});
+        }
+        
     });
 };
 

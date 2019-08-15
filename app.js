@@ -8,10 +8,13 @@ const bodyParser = require('body-parser');
 const methodOveride = require('method-override');
 const flash = require('connect-flash');
 const session = require('express-session');
-
+const passport = require('passport');
+const LoaclStrategy = require('passport-local').Strategy;
 
 const idea_routes = require('./routes/idea_routes');
 const auth_routes = require('./routes/auth_routes');
+
+require('./config/passport')(passport);
 
 const app = express();
 
@@ -33,13 +36,17 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+// passport middlewares
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash());
 
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
-
+    res.locals.user = req.user || null;
     next();
 });
 

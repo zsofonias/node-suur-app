@@ -1,5 +1,6 @@
 
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 const User = require('../models/User');
 
 const getRegister = (req, res, next) => {
@@ -61,13 +62,18 @@ const getLogin = (req, res, next) => {
 
 
 const login = (req, res, next) => {
-    console.log('hit');
-    console.log(req.body);
+   passport.authenticate('local', {
+       successRedirect: '/ideas',
+       failureRedirect: '/auth/login',
+       failureFlash: true
+   })(req, res, next);
 };
 
 
 const logout = (req, res, next) => {
-    res.send('U are loggdd out');
+    req.logout();
+    req.flash('success_msg', 'You have been logged out');
+    res.redirect('/auth/login');
 };
 
 
