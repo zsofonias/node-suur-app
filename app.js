@@ -53,10 +53,10 @@ app.get('/', (req, res) => {
 });
 
 app.use((req, res) => {
-    res.send('404, Page not Found');
+    res.render('404');
 });
 
 
-app.listen(3000, () => {
-    console.log('Server running on 3000');
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on ${process.env.PORT}`);
 });
